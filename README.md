@@ -5,15 +5,14 @@ MVC Web application for training purposes
 "Coming Soon..."
 
 ### Prerequisites
-Things you need to install the software and how to install them
-*
-*
+"coming Soon..."
 
 
-## Users' Actions:
+## User's Actions:
 * User Profile
-* Create Edit Delete his/her posts
-* View all his/her posts
+* Create Edit Delete posts
+* tag a friend in post
+* View all  posts
 
 ## Administrator’s Actions:
 * View all users' posts
