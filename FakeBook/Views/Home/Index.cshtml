@@ -1,0 +1,184 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "FakeBook";
+}
+
+<div class="container ">
+    <div class="row">
+        <div class="col-sm-3">
+            @*           _   _                ______           __ _ _        _____       __                           _   _
+                | | | |               | ___ \         / _(_) |      |_   _|     / _|                         | | (_)
+                | | | |___  ___ _ __  | |_/ / __ ___ | |_ _| | ___    | | _ __ | |_ ___  _ __ _ __ ___   __ _| |_ _  ___  _ __
+                | | | / __|/ _ \ '__| |  __/ '__/ _ \|  _| | |/ _ \   | || '_ \|  _/ _ \| '__| '_ ` _ \ / _` | __| |/ _ \| '_ \
+                | |_| \__ \  __/ |    | |  | | | (_) | | | | |  __/  _| || | | | || (_) | |  | | | | | | (_| | |_| | (_) | | | |
+                 \___/|___/\___|_|    \_|  |_|  \___/|_| |_|_|\___|  \___/_| |_|_| \___/|_|  |_| |_| |_|\__,_|\__|_|\___/|_| |_|
+            *@
+            <div class="container profile-menu">
+                <div class="row">
+                    <div style="text-align: center;">
+                        <i class="fa fa-user-circle " aria-hidden="true" style="font-size: 60px; margin-top: 5px"></i>
+                    </div>
+                </div>
+                <br />
+                <div class="row profile-info">
+                    <p>Hello @ViewBag.FullName !</p><br />
+                    <p>Choose your options and post away!</p>
+                    <p><br></p>
+                    <p>Email: @User.Identity.Name  </p>
+                    <p>Role: @ViewBag.Role</p>
+                </div>
+                <br />
+                <div class="row">
+                    
+                    @*@Html.ActionLink("Change Password", "ChangePassword", "Manage")*@
+                    @*@Html.ActionLink("Logout", "LogOff", "Account")*@
+                    @using (Html.BeginForm("ChangePassword", "Manage", new {@class = "D-inline"}))
+                    { //TODO inline style for forms 
+                        <Button class="btn  btn-change-pwd">Change Password</Button>
+                    }
+                    @using (Html.BeginForm("LogOff", "Account", new {@class = "D-inline"}))
+                    {
+                        <button class="btn  btn-logout">Logout</button>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+        @*
+                 _   _  _____ _    _  ______ _____ _____ _____   _____ _____ _____ _____ _____ _____ _   _
+                | \ | ||  ___| |  | | | ___ \  _  /  ___|_   _| /  ___|  ___/  __ \_   _|_   _|  _  | \ | |
+                |  \| || |__ | |  | | | |_/ / | | \ `--.  | |   \ `--.| |__ | /  \/ | |   | | | | | |  \| |
+                | . ` ||  __|| |/\| | |  __/| | | |`--. \ | |    `--. \  __|| |     | |   | | | | | | . ` |
+                | |\  || |___\  /\  / | |   \ \_/ /\__/ / | |   /\__/ / |___| \__/\ | |  _| |_\ \_/ / |\  |
+                \_| \_/\____/ \/  \/  \_|    \___/\____/  \_/   \____/\____/ \____/ \_/  \___/ \___/\_| \_/
+
+        *@
+        <div class="col-sm-8 col-sm-offset-1">
+
+
+            @if (!User.IsInRole("Admin"))
+            {
+
+                <div class=" row wall-form">
+
+                    <form id="newPostFrom">
+
+                        <div class="form-group">
+                            <textarea name="Text" class="post-textarea"></textarea>
+                        </div>
+
+                        <div class="form-group">
+
+                            <input id="Bold" type="checkbox" class="checkbox">
+                            <input id="BoldValue" type="hidden" name="Bold" />
+                            <label style="display: inline">Bold</label>
+
+
+                            <input id="RandomColor" type="checkbox" class="checkbox">
+                            <input id="RandomColorValue" type="hidden" name="RandomColor" value="none" />
+                            <label style="display: inline">Random Color</label>
+
+                            <select id="mentionFriend" style="height: 29px;" name="FriendId"></select>
+
+                            <Button id="postBtn" type="submit" class="btn btn-primary-form wall-btn" style="background: rgb(33, 150, 243)"> <i class="fa fa-paper-plane" aria-hidden="true"></i> Post</Button>
+                        </div>
+                        <input type="hidden" name="OwnerId" value="@User.Identity.GetUserId()" />
+
+                    </form>
+
+                </div>
+            }
+
+        </div>
+
+    </div>
+    <div class="row" style="margin-top: 10px">
+        <div class=" col-sm-8 col-sm-offset-4">
+        <div class="container">
+            <div class="row">
+                <div id="PostList"  >
+                    @*______ _____ _____ _____   _     _____ _____ _____   _____ _____ _____ _____   _   _  ___________ _____
+                    | ___ \  _  /  ___|_   _| | |   |_   _/  ___|_   _| |  __ \  _  |  ___/  ___| | | | ||  ___| ___ \  ___|
+                    | |_/ / | | \ `--.  | |   | |     | | \ `--.  | |   | |  \/ | | | |__ \ `--.  | |_| || |__ | |_/ / |__
+                    |  __/| | | |`--. \ | |   | |     | |  `--. \ | |   | | __| | | |  __| `--. \ |  _  ||  __||    /|  __|
+                    | |   \ \_/ /\__/ / | |   | |_____| |_/\__/ / | |   | |_\ \ \_/ / |___/\__/ / | | | || |___| |\ \| |___
+                    \_|    \___/\____/  \_/   \_____/\___/\____/  \_/    \____/\___/\____/\____/  \_| |_/\____/\_| \_\____/
+
+                    *@
+
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+@*   _____    _ _ _    ___  ___          _       _
+    |  ___|  | (_) |   |  \/  |         | |     | |
+    | |__  __| |_| |_  | .  . | ___   __| | __ _| |
+    |  __|/ _` | | __| | |\/| |/ _ \ / _` |/ _` | |
+    | |__| (_| | | |_  | |  | | (_) | (_| | (_| | |
+    \____/\__,_|_|\__| \_|  |_/\___/ \__,_|\__,_|_|
+
+*@
+@if (User.Identity.IsAuthenticated)
+{
+
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Update Post</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="updFrm">
+                        <div class="form-group">
+                            <textarea name="Text" class="post-textarea  Text "></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" class="ID">
+                            <input id="updBold" type="checkbox" class="checkbox" checked>
+                            <input id="updBoldValue" type="hidden" name="Bold" value=true />
+                            <label style="display: inline">Bold</label>
+
+
+                            <input id="updRandomColor" type="checkbox" class="checkbox">
+                            <input id="updRandomColorValue" type="hidden" name="RandomColor" value="none" />
+                            <label style="display: inline">Random Color</label>
+
+                            <input type="hidden" class="OwnerId" name="OwnerId" />
+                            <select class="FriendId" style=" height: 29px;" name="FriendId"></select>
+
+                        </div>
+                        <input type="hidden" class="ID" name="ID" />
+                        <div class="modal-footer">
+                            <button type="button" class="btn  " data-dismiss="modal"> Cancel</button>
+                            <button type="submit" data-id class="update-btn btn  "> Save </button>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts
+{
+
+    <script>
+
+        sessionStorage.setItem('AuthStatus', ' @HttpContext.Current.Session["AuthStatus"]');
+        sessionStorage.setItem('Role', '@HttpContext.Current.Session["Role"]');
+        sessionStorage.setItem('userId','@HttpContext.Current.User.Identity.GetUserId()');
+    </script>
+
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/index.js"></script>
+}
+

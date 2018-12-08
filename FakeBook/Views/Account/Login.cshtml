@@ -1,0 +1,52 @@
+﻿@using FakeBook.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+}
+
+
+<div class="row">
+    <div class="col-md-2 col-md-offset-4">
+       
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post @*, new { @class = "form-horizontal", role = "form" }*@ ))
+            {
+                <div class="div-form">
+                    @Html.AntiForgeryToken()
+                    <h4 class="form-header">Login Form</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+
+                        @Html.TextBoxFor(m => m.Email, new { placeholder = "Email", @class = "form-control form-input" })
+
+                    </div>
+                    <div class="form-group">
+
+                        @Html.PasswordFor(m => m.Password, new { placeholder = "Password", @class = "form-control form-input" })
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.CheckBoxFor(m => m.RememberMe, new { @class = "checkbox" })
+                        @Html.LabelFor(m => m.RememberMe)
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Log in" class="btn btn-primary-form" />
+                    </div>
+                    <p class="register">
+                        @Html.ActionLink("Register", "Register")
+                    </p>
+                    @* Enable this once you have account confirmation enabled for password reset functionality
+                        <p>
+                            @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                        </p>*@
+                </div>
+            }
+        
+    </div>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
