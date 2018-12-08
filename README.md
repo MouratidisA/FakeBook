@@ -28,4 +28,3 @@ Things you need to install the software and how to install them
 * RBAC implementation - Role access control between Administrators and simple User accounts 
 * API Controllers - Post CRUD actions between application and database
 * DOM manipulation - using jQuery 
-* Bootstrap 4 - Responsive design
