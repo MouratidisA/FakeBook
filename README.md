@@ -27,11 +27,11 @@ Create a web application that can post text on a wall similar to Facebook post. 
 
 
 ### Technologies Required
-•	MVC 5, C# (Preferable IDE Visual Studio or Visual Studio Code)
-•	HTML 5, JS, CSS
-•	Bootstrap (any)
-•	JQuery (any)
-•	Git (the final project will be taken from your git repository)
+*	MVC 5, C# (Preferable IDE Visual Studio or Visual Studio Code)
+*	HTML 5, JS, CSS
+*	Bootstrap (any)
+*	JQuery (any)
+*	Git (the final project will be taken from your git repository)
 
 ## User's Actions:
 * User Profile
