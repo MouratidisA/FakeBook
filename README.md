@@ -18,6 +18,7 @@ Create a web application that can post text on a wall similar to Facebook post. 
   *	Mention another user on your post (it is assumed that you can see all other users [Role = user] from the database as current friend-list)
   *Select options to transform the written text to bold or/and add random background color
 *	Edit all the properties on your already posted posts but not the text (properties are the options from the “Post Area” and the mentioned friends)
+
 ---	As a (Role = Admin)
 *	You cannot post new posts (the “Post Area is not visible to an Admin”)
 *	See all posts from every user on your wall on page load
